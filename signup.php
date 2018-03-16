@@ -13,28 +13,22 @@ include_once ROOT . 'html/common/header.php'; ?>
                         <div id="firstname-group" class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input id="firstname" type="text" name="first_name" placeholder="First Name"
+                                <input id="firstname" type="text" name="fname" placeholder="First Name"
                                        class="form-control">
                                 <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- HIDDEN / POP-UP DIV -->
-                        <div id="pop-up-fn">
-                            <p>Should be between 3 and 20 characters long</p>
-                        </div>
+
                         <!-- Last Name -->
                         <div id="lastname-group" class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input id="lastname" type="text" name="last_name" placeholder="Last Name"
+                                <input id="lastname" type="text" name="lname" placeholder="Last Name"
                                        class="form-control">
                                 <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- HIDDEN / POP-UP DIV -->
-                        <div id="pop-up-ln">
-                            <p>Should be between 3 and 20 characters long</p>
-                        </div>
+
                         <!-- Email -->
                         <div id="email-group" class="form-group">
                             <div class="input-group">
@@ -43,22 +37,16 @@ include_once ROOT . 'html/common/header.php'; ?>
                                 <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- HIDDEN / POP-UP DIV -->
-                        <div id="pop-up-em">
-                            <p>Should be a valid e-mail</p>
-                        </div>
+
                         <!-- Username -->
-                        <div id="uid-group" class="form-group">
+                        <div id="usr-group" class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input id="uid" type="text" name="uid" placeholder="Username" class="form-control">
+                                <input id="usr" type="text" name="usr" placeholder="Username" class="form-control">
                                 <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- HIDDEN / POP-UP DIV -->
-                        <div id="pop-up-un">
-                            <p>Should be between 3 and 20 characters long</p>
-                        </div>
+
                         <!-- Password -->
                         <div id="pwd-group" class="form-group">
                             <div class="input-group">
@@ -67,9 +55,14 @@ include_once ROOT . 'html/common/header.php'; ?>
                                 <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
-                        <!-- HIDDEN / POP-UP DIV -->
-                        <div id="pop-up-pw">
-                            <p>Should be between 8 and 20 characters long</p>
+
+                        <!-- Password Confirm-->
+                        <div id="pwd-conf-group" class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input id="pwd-conf" type="password" name="pwd-conf" placeholder="Password Confirm" class="form-control">
+                                <span id="status" class="hidden glyphicon glyphicon-ok form-control-feedback"></span>
+                            </div>
                         </div>
 
                         <!-- Submit button -->

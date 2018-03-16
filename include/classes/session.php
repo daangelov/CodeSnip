@@ -31,15 +31,15 @@ class Session
 
         $session_arr = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (isset($session_arr['data'])) {
+        if (isset($session_arr['session_data'])) {
             $this->session_arr = $session_arr;
-            return $session_arr['data'];
+            return $session_arr['session_data'];
         } else {
             return '';
         }
     }
 
-    public function write($session_id, $data)
+    public function write($session_id, $session_data)
     {
         // Write the session in the database
         $user_id = empty($_SESSION['user_id']) ? 0 : $_SESSION['user_id'];
@@ -66,13 +66,13 @@ class Session
                 }
             }
 
-            $stmt = $this->db->prepare("INSERT INTO session (session_id, user_id, data, ip_address, created_on, updated_on) VALUES (?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
-            $stmt->execute(array($session_id, $user_id, $data, $ip_address));
+            $stmt = $this->db->prepare("INSERT INTO session (session_id, user_id, session_data, ip_address, created_on, updated_on) VALUES (?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
+            $stmt->execute(array($session_id, $user_id, $session_data, $ip_address));
 
         } else {
             // If the session exists in the database update session data and last_updated
-            $stmt = $this->db->prepare("UPDATE session SET data=?, updated_on=CURRENT_TIMESTAMP WHERE session_id=? AND ip_address=? AND user_id=?");
-            $stmt->execute(array($data, $session_id, $ip_address, $user_id));
+            $stmt = $this->db->prepare("UPDATE session SET session_data=?, updated_on=CURRENT_TIMESTAMP WHERE session_id=? AND ip_address=? AND user_id=?");
+            $stmt->execute(array($session_data, $session_id, $ip_address, $user_id));
         }
 
         return true;

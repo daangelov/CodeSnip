@@ -1,47 +1,91 @@
 <?php
 
-require_once 'system.php';
-require_once 'functions.php';
+require_once '../system.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && array_key_exists('submit', $_POST)) {
+$response = array(
+    'st' => '1',
+    'msg' => ''
+);
 
-    require_once 'db_connect.php';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fname']) && isset($_POST['lname'])
+    && isset($_POST['email']) && isset($_POST['usr']) && isset($_POST['pwd']) && isset($_POST['pwd-conf'])) {
 
-    $first_name = trim(pg_escape_string($dbconn, $_POST['first_name']));
-    $last_name = trim(pg_escape_string($dbconn, $_POST['last_name']));
-    $email = trim(pg_escape_string($dbconn, $_POST['email']));
-    $username = trim(pg_escape_string($dbconn, $_POST['uid']));
-    $password = trim(pg_escape_string($dbconn, $_POST['pwd']));
+    $firstname = $_POST['fname'];
+    $lastname = $_POST['lname'];
+    $email = $_POST['email'];
+    $username = $_POST['usr'];
+    $password = $_POST['pwd'];
+    $password_confirm = $_POST['pwd-conf'];
 
-    // Verification
-    // Check if empty, short or long string is provided
-    if(!valid_input($first_name) || !valid_input($last_name) || !valid_input($username)) {
-        echo_json("status", "invalid_fields");
+
+    // Check if names are correct
+    if (!check_name($firstname)) {
+        $response['st'] = 2;
+        $response['msg'] .= "Невалидно име.\n";
     }
-    // Check if the email is correct
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo_json("status", "invalid_email");
+    if (!check_name($lastname)) {
+        $response['st'] = 2;
+        $response['msg'] .= "Невалидна фамилия.\n";
     }
-    // Check if password is more than 8 symbols
-    if(!valid_password($password)) {
-        echo_json("status", "invalid_password");
+    // Check if username is correct
+    if (!check_username($username)) {
+        $response['st'] = 2;
+        $response['msg'] .= "Невалидно потребителско име.\n";
     }
-    // Check if username exists in the database
-    if(exists_in_db($dbconn, "users", "username", $username, $res)) {
-        echo_json("status", "taken_username");
+    // Check if email is correct
+    if (!check_email($email)) {
+        $response['st'] = 2;
+        $response['msg'] .= "Невалидeн E-mail адрес.\n";
     }
-    // Check if email exists in the database
-    if(exists_in_db($dbconn, "users", "email", $email, $res)) {
-        echo_json("status", "taken_email");
-    }
-    // Hash the password
-    $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert into database
-    insert_name_in_db($dbconn, $first_name, $last_name, $email, $username, $hashed_pwd);
+    // Check if password is correct
+    if (!check_password($password)) {
+        $response['st'] = 2;
+        $response['msg'] .= "Невалидна парола. Паролата трябва да е поне 8 символа.\n";
+    }
+    // Check if password_confirm is the same
+    if (empty($password_confirm) || $password_confirm != $password) {
+        $response['st'] = 2;
+        $response['msg'] .= "Паролите не съвпадат.\n";
+    }
 
-    echo_json("status", "signup_success");
+    $stmt = $db->prepare('SELECT username, email FROM code_snip.user WHERE username = ? OR email = ?');
+    $stmt->execute(array($username, $email));
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Check if record with this username exists
+    if ($stmt->rowCount() != 0) {
+
+        if ($result['username'] == $username) {
+            $response['st'] = 2;
+            $response['msg'] .= "Това потребителското име е заето.\n";
+        }
+        if ($result['email'] == $email) {
+            $response['st'] = 2;
+            $response['msg'] .= "Този E-mail адрес вече е използван.\n";
+        }
+    }
+
+    // If errors exit
+    if ($response['st'] == 2) {
+        echo json_encode($response);
+        exit();
+    }
+
+    // Create account
+    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $db->prepare('INSERT INTO code_snip.user (username, password, firstname, lastname, email)
+        VALUES (?, ?, ?, ?, ?)');
+    $stmt->execute(array($username, $password_hashed, $firstname, $lastname, $email));
+
+    $response['msg'] = "Успешно се регистрирахте в сайта! Изптахме Ви E-mail на посочения адрес, за да активирате акауна си.";
+    echo json_encode($response);
+    exit();
 
 } else {
-    echo_json("status", "error");
+    $response['st'] = 0;
+    $response['msg'] = "Моля опитайте отново.";
+    echo json_encode($response);
+    exit();
 }

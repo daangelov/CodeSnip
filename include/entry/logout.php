@@ -1,10 +1,9 @@
 <?php
 
-// Start session
-require_once 'session_start.php';
+require_once '../system.php';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' && array_key_exists('submit', $_POST)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     session_unset();
     session_destroy();
-    redirect(BASE_URL . "/index.php");
+    redirect('index.php');
 }

@@ -25,13 +25,31 @@ function is_admin()
 }
 
 /**
+ * Check if name is valid
+ * @param string $input
+ * @return bool
+ */
+function check_name($input)
+{
+    if (!empty($input) && strlen($input) > 2 && strlen($input) < 21) {
+        return true;
+    }
+    return false;
+}
+function check_email($input) {
+    if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    }
+    return false;
+}
+/**
  * Check if username is valid
  * @param string $input
  * @return bool
  */
 function check_username($input)
 {
-    if (!empty($input) && strlen($input) > 3 && strlen($input) < 20) {
+    if (!empty($input) && strlen($input) > 2 && strlen($input) < 21) {
         return true;
     }
     return false;
@@ -44,7 +62,7 @@ function check_username($input)
  */
 function check_password($input)
 {
-    if (!empty($input) && strlen($input) > 8 && strlen($input) < 20) {
+    if (!empty($input) && strlen($input) > 7 && strlen($input) < 21) {
         return true;
     }
     return false;

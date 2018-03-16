@@ -13,6 +13,9 @@
 </head>
 
 <body>
+<!-- Loading div and gif -->
+<div id="loading_div"></div>
+<div id="loading_gif"></div>
 
 <nav>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -34,43 +37,33 @@
                             <a href="<?= BASE_URL; ?>index.php">Home</a>
                         </li>
                         <?php if (is_admin()) : ?>
-
                             <li>
                                 <a href="<?= BASE_URL; ?>account_approve.php">Approve Accounts</a>
-                            </li>
-                            <li>
-                                <a href="<?= BASE_URL; ?>image_approve.php">Approve Pictures</a>
-                            </li>
-                            <li>
-                                <a href="<?= BASE_URL; ?>edit_table.php">Editable Table</a>
-                            </li>
-                            <li>
-                                <a href="<?= BASE_URL; ?>edit_users.php">Edit Users</a>
                             </li>
                         <?php endif; ?>
 
                     </ul>
 
                     <div class="navbar-header">
-                        <span class="navbar-text">Welcome, <?= $_SESSION["user_firstname"] . " " . $_SESSION["user_lastname"]; ?></span>
+                        <span class="navbar-text">Welcome, <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?></span>
                     </div>
 
-                    <form class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/logout.php" method="POST">
+                    <form class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/logout.php" method="POST">
                         <button class="btn btn-default" type="submit" name="submit">Logout</button>
                     </form>
                 </div>
             <?php else : ?>
 
-            <form id="navbar-main" class="collapse navbar-collapse navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/login.php" method="POST">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="usr" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="pwd" placeholder="Password">
-                </div>
-                <button name="submit" type="submit" class="btn btn-default">Sign in</button>
-                <a class="btn-signup btn btn-default" href="<?= BASE_URL; ?>signup.php">Sign up</a>
-            </form>
+                <form id="navbar-main" class="collapse navbar-collapse navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/login.php" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="usr" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="pwd" placeholder="Password">
+                    </div>
+                    <button name="submit" type="submit" class="btn btn-default">Sign in</button>
+                    <a class="btn-signup btn btn-default" href="<?= BASE_URL; ?>signup.php">Sign up</a>
+                </form>
             <?php endif; ?>
 
         </div>

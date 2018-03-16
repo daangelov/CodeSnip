@@ -6,6 +6,7 @@ $response = array(
     'st' => 1,
     'msg' => ''
 );
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST['pwd'])) {
 
     $username = trim($_POST['usr']);
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Check if valid input is provided
     if (!check_username($username) || !check_password($password)) {
-        $response['st'] = 0;
+        $response['st'] = 2;
         $response['msg'] = 'Потребителското име и паролата са грешни или не съвпадат!';
         echo json_encode($response);
         exit();
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Select the user with this username from database
     $stmt = $db->prepare('SELECT id, username, password, firstname, lastname, email, status, type
-        FROM user WHERE username = ?');
+        FROM code_snip.user WHERE username = ?');
     $stmt->execute(array($username));
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Check if username exists
     if ($stmt->rowCount() != 1) {
-        $response['st'] = 0;
+        $response['st'] = 2;
         $response['msg'] = 'Потребителското име и паролата са грешни или не съвпадат!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Check if password matches
     if (!password_verify($password, $user['password'])) {
-        $response['st'] = 0;
+        $response['st'] = 2;
         $response['msg'] = 'Потребителското име и паролата са грешни или не съвпадат!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
@@ -54,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
     // Password matches
 
     // Check if the user is confirmed
-    if ($res['status'] == 0) {
-        $response['st'] = 0;
+    if ($user['status'] == 0) {
+        $response['st'] = 2;
         $response['msg'] = 'Този акаунт не е потвърден!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
@@ -69,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
     $stmt = $db->prepare('SELECT session_id FROM session WHERE user_id = ?');
     $stmt->execute(array($user['id']));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
     if ($stmt->rowCount() != 0 && session_id() != $row['session_id']) {
         $stmt = $db->prepare('DELETE FROM session WHERE user_id = ?');
         $stmt->execute(array($user['id']));

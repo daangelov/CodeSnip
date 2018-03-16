@@ -1,189 +1,92 @@
-// Sign up form validate
+// Signup validation
+function toggle_change(selector, state) {
+    if (state === 'success') {
+        selector.removeClass('has-error').addClass('has-success');
+        selector.find('#status')
+            .removeClass('hidden')
+            .removeClass('glyphicon-remove')
+            .addClass('glyphicon-ok');
+    } else if (state === 'error') {
+        selector.removeClass('has-success').addClass('has-error');
+        selector.find('#status')
+            .removeClass('hidden')
+            .removeClass('glyphicon-ok')
+            .addClass('glyphicon-remove');
+    }
+
+}
 
 $(document).ready(function () {
-    var first_name_check = false,
-        last_name_check = false,
-        email_check = false,
-        username_check = false,
-        password_check = false;
 
-    $('#firstname-group').on('focusout keyup keypress', function () {
-        var first_name_length = $('#firstname').val().length;
+    // Firstname, lastname and username validate
+    $('#firstname-group, #lastname-group, #usr-group').on('focusout keyup', function () {
+        var that = $(this),
+            input_length = that.find('input').eq(0).val().length;
 
-        if (first_name_length < 3 || first_name_length > 20) {
-            $('#firstname-group')
-                .removeClass('has-success')
-                .addClass('has-error');
-            $('#firstname-group #status')
-                .removeClass('hidden')
-                .removeClass('glyphicon-ok')
-                .addClass('glyphicon-remove');
-            first_name_check = false;
+        if (input_length < 3 || input_length > 20) {
+            toggle_change(that, 'error');
         } else {
-            $('#firstname-group')
-                .removeClass('has-error')
-                .addClass('has-success');
-            $('#firstname-group #status')
-                .removeClass('hidden')
-                .removeClass('glyphicon-remove')
-                .addClass('glyphicon-ok');
-            first_name_check = true;
+            toggle_change(that, 'success');
         }
     });
-    $('#lastname-group').on('focusout keyup keypress', function () {
-        var last_name_length = $('#lastname').val().length;
-        if (last_name_length < 3 || last_name_length > 20) {
-            $('#lastname-group')
-                .removeClass('has-success')
-                .addClass('has-error');
-            $('#lastname-group #status')
-                .removeClass('hidden')
-                .removeClass('glyphicon-ok')
-                .addClass('glyphicon-remove');
-            last_name_check = false;
-        } else {
-            $('#lastname-group')
-                .removeClass('has-error')
-                .addClass('has-success');
-            $('#lastname-group #status')
-                .removeClass('hidden')
-                .removeClass('glyphicon-remove')
-                .addClass('glyphicon-ok');
-            last_name_check = true;
-        }
-    });
-    $('input#email').on('focusout keyup keypress', function () {
-        var email_pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // Email validate
+    $('#email-group').on('focusout keyup', function () {
+        var that = $(this),
+            email_pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        if (!email_pattern.test($('input#email').val())) {
-            $('#sign_up>#email').addClass('has-error');
-            $('#email>div>span#error').removeClass('hidden');
-            $('#sign_up>#email').removeClass('has-success');
-            $('#email>div>span#success').addClass('hidden');
-            email_check = false;
+        if (!email_pattern.test($('#email').val())) {
+            toggle_change(that, 'error');
         } else {
-            $('#sign_up>#email').removeClass('has-error');
-            $('#email>div>span#error').addClass('hidden');
-            $('#sign_up>#email').addClass('has-success');
-            $('#email>div>span#success').removeClass('hidden');
-            email_check = true;
-        }
-    });
-    $('#uid-group').on('focusout keyup keypress', function () {
-        var uid_length = $('#uid').val().length;
-
-        if (uid_length < 3 || uid_length > 20) {
-            $('#sign_up>#uid').addClass('has-error');
-            $('#uid>div>span#error').removeClass('hidden');
-            $('#sign_up>#uid').removeClass('has-success');
-            $('#uid>div>span#success').addClass('hidden');
-            username_check = false;
-        } else {
-            $('#sign_up>#uid').removeClass('has-error');
-            $('#uid>div>span#error').addClass('hidden');
-            $('#sign_up>#uid').addClass('has-success');
-            $('#uid>div>span#success').removeClass('hidden');
-            username_check = true;
-        }
-    });
-    $('input#pwd').on('focusout keyup keypress', function () {
-        var uid_length = $('input#pwd').val().length;
-        if (uid_length < 8 || uid_length > 20) {
-            $('#sign_up>#pwd').addClass('has-error');
-            $('#pwd>div>span#error').removeClass('hidden');
-            $('#sign_up>#pwd').removeClass('has-success');
-            $('#pwd>div>span#success').addClass('hidden');
-            password_check = false;
-        } else {
-            $('#sign_up>#pwd').removeClass('has-error');
-            $('#pwd>div>span#error').addClass('hidden');
-            $('#sign_up>#pwd').addClass('has-success');
-            $('#pwd>div>span#success').removeClass('hidden');
-            password_check = true;
+            toggle_change(that, 'success');
         }
     });
 
-    $('form#sign_up').submit(function (event) {
-        event.preventDefault();
-        if (!first_name_check || !last_name_check || !email_check || !username_check || !password_check) {
-            swal("", "Please fill in the form correctly", "warning");
-            return false;
+    // Password validate
+    $('#pwd-group').on('focusout keyup', function () {
+
+        var that = $(this),
+            input_length = that.find('input').eq(0).val().length;
+
+        if (input_length < 8 || input_length > 20) {
+            toggle_change(that, 'error');
         } else {
-            var that = $(this),
-                url = that.attr('action'),
-                type = that.attr('method'),
-                content = that.serialize() + "&submit=submit";
-            $.ajax({
-                url: url,
-                type: type,
-                data: content,
-                success: function (data) {
-                    var obj = JSON.parse(data);
-                    switch (obj.status) {
-                        case 'no_way':
-                            swal("Oops", "Something went wrong. Please try again.", "error");
-                            break;
-                        case 'signup_success':
-                            swal("Congratulations", "You are now signed up!", "success");
-                            break;
-                        case 'error':
-                            swal("Oops", "Your request failed.", "error");
-                            break;
-                        case 'invalid_fields':
-                            swal("", "Please fill in the form correctly", "warning");
-                            break;
-                        case 'invalid_password':
-                            swal("", "Password must be a between 8 and 20 characters long", "warning");
-                            break;
-                        case 'taken_username':
-                            swal("Oops", "This username is taken.", "warning");
-                            break;
-                        case 'taken_email':
-                            swal("Oops", "This email is taken.", "warning");
-                            break;
-                        case 'invalid_email':
-                            swal("Oops", "This email is not valid.", "warning");
-                            break;
-                    }
+            toggle_change(that, 'success');
+        }
+    });
+
+    // Password confirm validate
+    $('#pwd-conf-group').on('focusout keyup', function () {
+
+        var that = $(this),
+            pwd_value = $('#pwd').val(),
+            pwd_conf_value = $('#pwd-conf').val();
+
+        if (pwd_value !== pwd_conf_value) {
+            toggle_change(that, 'error');
+        } else {
+            toggle_change(that, 'success');
+        }
+    });
+
+    // Sign up
+    $('#sign_up').on('submit', function (e) {
+        e.preventDefault();
+
+        makeAjaxRequest(
+            $(this).attr('action'),
+            new FormData($('#sign_up')[0]),
+            function (jdata) {
+                if (jdata.st === 1) {
+                    swal('Поздравления!', jdata.msg, 'success').then(function () {
+                        location.reload();
+                    });
+                } else if (jdata.st === 2) {
+                    swal('Внимание!', jdata.msg, 'warning');
                 }
-            });
-            return false;
-        }
-    });
-
-    $('div#first_name').hover(function () {
-        $('div#pop-up-fn').show()
-            .css('top', 19)
-            .css('left', 350);
-    }, function () {
-        $('div#pop-up-fn').hide();
-    });
-    $('div#last_name').hover(function () {
-        $('div#pop-up-ln').show()
-            .css('top', 68)
-            .css('left', 350);
-    }, function () {
-        $('div#pop-up-ln').hide();
-    });
-    $('div#email').hover(function () {
-        $('div#pop-up-em').show()
-            .css('top', 117)
-            .css('left', 350);
-    }, function () {
-        $('div#pop-up-em').hide();
-    });
-    $('div#uid').hover(function () {
-        $('div#pop-up-un').show()
-            .css('top', 166)
-            .css('left', 350);
-    }, function () {
-        $('div#pop-up-un').hide();
-    });
-    $('div#pwd').hover(function () {
-        $('div#pop-up-pw').show()
-            .css('top', 215)
-            .css('left', 350);
-    }, function () {
-        $('div#pop-up-pw').hide();
+            },
+            function () {
+            }
+        );
+        return false;
     });
 });
