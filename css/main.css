@@ -1,0 +1,77 @@
+/* MY CODE new */
+
+.myfa {
+    margin-right: -4px;
+}
+
+.panel-info > .panel-heading {
+    color: #ffffff;
+    background-color: #31708f;
+    border-color: #bce8f1;
+}
+
+.panel-body {
+    padding: 24px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+html {
+    margin-bottom: 60px;
+}
+
+body {
+    background: url("../img/background3.jpg") no-repeat top right;
+    background-size: 100%;
+    opacity: 0.90;
+    padding-top: 65px;
+}
+
+/* HOVER STYLES */
+div#pop-up-fn, div#pop-up-ln, div#pop-up-em, div#pop-up-un, div#pop-up-pw {
+
+    display: none;
+    position: absolute;
+    width: 280px;
+    padding: 10px;
+    background: #EEE177;
+    opacity: 0.4;
+    color: #000000;
+    border: 1px solid #1a1a1a;
+    border-radius: 20px;
+    font-size: 90%;
+    z-index: 999;
+}
+
+/* Carousel */
+.carousel {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+
+.carousel .carousel-inner {
+    background-color: #000000;
+}
+
+
+
