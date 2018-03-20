@@ -3,7 +3,7 @@
 require_once '../system.php';
 
 $response = array(
-    'st' => '1',
+    'st' => 1,
     'msg' => ''
 );
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fname']) && isset($_PO
     // Check if email is correct
     if (!check_email($email)) {
         $response['st'] = 2;
-        $response['msg'] .= "Невалидeн E-mail адрес.\n";
+        $response['msg'] .= "Невалиден E-mail адрес.\n";
     }
 
     // Check if password is correct
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fname']) && isset($_PO
         VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($username, $password_hashed, $firstname, $lastname, $email));
 
-    $response['msg'] = "Успешно се регистрирахте в сайта! Изптахме Ви E-mail на посочения адрес, за да активирате акауна си.";
+    $response['msg'] = "Успешно се регистрирахте в сайта!";
     echo json_encode($response);
     exit();
 

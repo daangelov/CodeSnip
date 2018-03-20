@@ -17,9 +17,10 @@
 <div id="loading_div"></div>
 <div id="loading_gif"></div>
 
-<nav>
-    <div class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
+
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                     <span class="icon-bar"></span>
@@ -29,32 +30,32 @@
 
                 <a class="navbar-brand" href="<?= BASE_URL; ?>index.php">CodeSnip</a>
             </div>
+
+            <div id="navbar-main" class="collapse navbar-collapse">
             <?php if (is_logged()) : ?>
 
-                <div class="collapse navbar-collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="<?= BASE_URL; ?>index.php">Home</a>
+                    </li>
+                    <?php if (is_admin()) : ?>
                         <li>
-                            <a href="<?= BASE_URL; ?>index.php">Home</a>
+                            <a href="<?= BASE_URL; ?>account_approve.php">Approve Accounts</a>
                         </li>
-                        <?php if (is_admin()) : ?>
-                            <li>
-                                <a href="<?= BASE_URL; ?>account_approve.php">Approve Accounts</a>
-                            </li>
-                        <?php endif; ?>
+                    <?php endif; ?>
 
-                    </ul>
+                </ul>
 
-                    <div class="navbar-header">
-                        <span class="navbar-text">Welcome, <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?></span>
-                    </div>
-
-                    <form class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/logout.php" method="POST">
-                        <button class="btn btn-default" type="submit" name="submit">Logout</button>
-                    </form>
+                <div class="navbar-header">
+                    <span class="navbar-text">Welcome, <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?></span>
                 </div>
+
+                <form class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/logout.php" method="POST">
+                    <button class="btn btn-default" type="submit" name="submit">Logout</button>
+                </form>
             <?php else : ?>
 
-                <form id="navbar-main" class="collapse navbar-collapse navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/login.php" method="POST">
+                <form id="login" class="collapse navbar-collapse navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/login.php" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" name="usr" placeholder="Username">
                     </div>
@@ -66,6 +67,7 @@
                 </form>
             <?php endif; ?>
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>

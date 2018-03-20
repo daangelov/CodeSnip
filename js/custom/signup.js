@@ -76,9 +76,10 @@ $(document).ready(function () {
             $(this).attr('action'),
             new FormData($('#sign_up')[0]),
             function (jdata) {
+
                 if (jdata.st === 1) {
                     swal('Поздравления!', jdata.msg, 'success').then(function () {
-                        location.reload();
+                        window.location.replace('index.php');
                     });
                 } else if (jdata.st === 2) {
                     swal('Внимание!', jdata.msg, 'warning');
