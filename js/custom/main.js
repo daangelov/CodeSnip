@@ -1,3 +1,5 @@
+const BASE_URL = 'http://' + window.location.hostname + 'CodeSnip/';
+
 function showSpinner() {
     $("#loading_div, #loading_gif").show();
 }
@@ -41,7 +43,9 @@ function makeAjaxRequest(script, formData, done, always) {
             showWarning('Проблем с ajax заявката!');
         },
         complete: function () {
-            always();
+            if (typeof always === "function") {
+                always();
+            }
             hideSpinner();
         }
     });

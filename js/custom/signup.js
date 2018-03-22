@@ -84,8 +84,6 @@ $(document).ready(function () {
                 } else if (jdata.st === 2) {
                     swal('Внимание!', jdata.msg, 'warning');
                 }
-            },
-            function () {
             }
         );
         return false;

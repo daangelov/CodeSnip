@@ -36,12 +36,15 @@ function check_name($input)
     }
     return false;
 }
-function check_email($input) {
+
+function check_email($input)
+{
     if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
         return true;
     }
     return false;
 }
+
 /**
  * Check if username is valid
  * @param string $input
