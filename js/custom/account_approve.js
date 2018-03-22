@@ -6,7 +6,7 @@ $(document).ready(function () {
             data = new FormData();
 
         data.append('id', that.attr('id'));
-        data.append('action', that.attr('title'));
+        data.append('action', that.attr('data-action'));
 
         makeAjaxRequest(
             'include/admin/account_approve.php',

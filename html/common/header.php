@@ -36,35 +36,35 @@
 
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="<?= BASE_URL; ?>index.php">Home</a>
+                        <a href="<?= BASE_URL; ?>index.php">Начало</a>
                     </li>
                 <?php if (is_admin()) : ?>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>account_approve.php">Approve Accounts</a>
+                        <a href="<?= BASE_URL; ?>account_approve.php">Потребителски Акаунти</a>
                     </li>
                 <?php endif; ?>
 
                 </ul>
 
                 <div class="navbar-header">
-                    <span class="navbar-text">Welcome, <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?></span>
+                    <span class="navbar-text">Здравей, <?= $_SESSION["firstname"] . " " . $_SESSION["lastname"]; ?></span>
                 </div>
 
                 <form class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/logout.php" method="POST">
-                    <button class="btn btn-default" type="submit" name="submit">Logout</button>
+                    <button class="btn btn-default" type="submit" name="submit">Изход</button>
                 </form>
             <?php else : ?>
 
                 <form id="login" class="navbar-form navbar-right" action="<?= BASE_URL; ?>include/entry/login.php" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="usr" placeholder="Username">
+                        <input type="text" class="form-control" name="usr" placeholder="Потребителско име">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="pwd" placeholder="Password">
+                        <input type="password" class="form-control" name="pwd" placeholder="Парола">
                     </div>
-                    <button name="submit" type="submit" class="btn btn-default">Sign in</button>
-                    <a class="btn-signup btn btn-default" href="<?= BASE_URL; ?>signup.php">Sign up</a>
+                    <button name="submit" type="submit" class="btn btn-default">Вход</button>
+                    <a class="btn-signup btn btn-default" href="<?= BASE_URL; ?>signup.php">Регистрация</a>
                 </form>
             <?php endif; ?>
 

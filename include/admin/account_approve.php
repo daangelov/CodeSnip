@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
 
     $user_status = USER_STATUS_PENDING;
 
-    if ($action == 'Approve') {
+    if ($action == 'approve') {
         $user_status = USER_STATUS_APPROVED;
-    } elseif ($action == 'Ban') {
+    } elseif ($action == 'ban') {
         $user_status = USER_STATUS_BANNED;
     } else {
         $response['st'] = 0;
