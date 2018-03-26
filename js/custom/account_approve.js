@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $(document).delegate('.acc_approve, .acc_ban', 'click', function () {
-        
+
         var that = $(this),
             data = new FormData(),
             id = that.attr('id'),
@@ -11,7 +11,7 @@ $(document).ready(function () {
         data.append('action', action);
 
         makeAjaxRequest(
-            'include/admin/account_approve.php',
+            BASE_URL + 'include/admin/account_approve.php',
             data,
             function (jdata) {
                 if (jdata.st === 1) {

@@ -1,4 +1,4 @@
-const BASE_URL = 'http://' + window.location.hostname + 'CodeSnip/';
+const BASE_URL = 'http://' + window.location.hostname + '/CodeSnip/';
 
 function showSpinner() {
     $("#loading_div, #loading_gif").show();
