@@ -50,4 +50,3 @@ function makeAjaxRequest(script, formData, done, always) {
         }
     });
 }
-

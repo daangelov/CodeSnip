@@ -8,9 +8,11 @@
     <link rel="icon" href="<?= BASE_URL; ?>img/favicon.png">
 
     <link href="<?= BASE_URL; ?>css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= BASE_URL; ?>css/highlight/idea.css" rel="stylesheet">
     <link href="<?= BASE_URL; ?>css/main.css" type="text/css" rel="stylesheet">
 
     <script src="<?= BASE_URL; ?>js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="<?= BASE_URL; ?>js/highlight/highlight.pack.js"></script>
 </head>
 
 <body>
@@ -39,6 +41,9 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="<?= BASE_URL; ?>index.php">Начало</a>
+                </li>
+                <li>
+                    <a href="<?= BASE_URL; ?>dashboard.php">Код</a>
                 </li>
             <?php if (is_admin()) : ?>
 
