@@ -1,5 +1,5 @@
 <?php
-require_once 'include/system.php';
+require_once 'include/settings.php';
 
 if (is_logged()) {
     redirect('index.php');

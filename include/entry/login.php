@@ -1,6 +1,6 @@
 <?php
 
-require_once '../system.php';
+require_once '../settings.php';
 
 $response = array(
     'st' => 1,
