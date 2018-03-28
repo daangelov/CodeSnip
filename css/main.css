@@ -30,8 +30,7 @@ html {
 }
 
 body {
-    background: #ffffff url("../img/background.jpg") fixed no-repeat left;
-
+    background: #ffffff url("../img/background.jpg") fixed no-repeat left bottom;
     padding-top: 65px;
 }
 

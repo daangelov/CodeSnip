@@ -1,7 +1,7 @@
     <?php if (!is_logged()) : ?>
 
     <div class="jumbotron">
-        <h1>Започни сега</h1>
+        <h1>Започни сега!</h1>
         <p class="lead">Започни да използваш CodeSnip като първо си създадеш профил в нашия сайт!</p>
         <a class="btn btn-lg btn-warning" href="<?= BASE_URL; ?>signup.php" role="button">Регистрирай се!</a>
     </div>
