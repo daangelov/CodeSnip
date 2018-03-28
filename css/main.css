@@ -23,12 +23,6 @@
 }
 /* End loading spinner */
 
-.panel-info > .panel-heading {
-    color: #ffffff;
-    background-color: #31708f;
-    border-color: #bce8f1;
-}
-
 html {
     margin-bottom: 60px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -48,8 +42,6 @@ body {
     height: 100%;
     width: auto;
 }
-
-.snippet-name {
-    display: block;
+.panel-heading {
     cursor: pointer;
 }

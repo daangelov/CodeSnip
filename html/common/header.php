@@ -8,7 +8,7 @@
     <link rel="icon" href="<?= BASE_URL; ?>img/favicon.png">
 
     <link href="<?= BASE_URL; ?>css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= BASE_URL; ?>css/highlight/idea.css" rel="stylesheet">
+    <link href="<?= BASE_URL; ?>css/highlight/default.css" rel="stylesheet">
     <link href="<?= BASE_URL; ?>css/main.css" type="text/css" rel="stylesheet">
 
     <script src="<?= BASE_URL; ?>js/jquery/jquery-3.3.1.min.js"></script>

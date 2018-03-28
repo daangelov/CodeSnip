@@ -11,10 +11,10 @@
 
         <?php foreach ($snippets as $snip) : ?>
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" data-toggle="collapse" href="#<?= $snip['id']; ?>">
                 <h4 class="panel-title">
                     <!-- Add to div data-parent="#accordion" -->
-                    <div class="snippet-name" data-toggle="collapse" href="#<?= $snip['id']; ?>">
+                    <div>
                         <h4><?= $snip['title']; ?></h4>
                         <span style="display: block">Дата на създаване: <?= date('d-m-Y', strtotime($snip['created_on'])); ?></span>
                         <span style="display: block">Последно редактиране: <?= date('d-m-Y', strtotime($snip['updated_on'])); ?></span>
