@@ -72,5 +72,3 @@
         </div>
     </div>
 </div>
-
-<script src="<?= BASE_URL; ?>js/custom/signup.js"></script>

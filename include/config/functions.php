@@ -85,3 +85,34 @@ function redirect($url, $args = false)
     }
     exit();
 }
+
+/**
+ * Automatically load js file with the same name as the page name currently on
+ * @param string $filename
+ * @return bool|string
+ */
+function auto_load_js($filename) {
+    // Get all files with .js extension in js/custom
+    $files = glob("js/custom/*.js");
+
+    // Loop through all directories in js/custom
+    foreach (glob("js/custom/*", GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+        // Merge all files with .js extension
+        $files = array_merge($files, glob($dir . "/*.js"));
+    }
+
+    // Get the file name of the current page
+    $page_name = pathinfo($filename);
+    // Js file with the same name
+    $js_name = $page_name['filename'] . '.js';
+
+    // Loop through the js files to find if such name exists in the directory
+    foreach ($files as $file) {
+        if ($js_name == basename($file)) {
+            // Return the script tag
+            return '<script src="' . BASE_URL . $file . '"></script>';
+        }
+    }
+    // If not found return false
+    return false;
+}

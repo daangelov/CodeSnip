@@ -72,5 +72,3 @@ if ($stmt->rowCount() > 0) : ?>
 
     <h3 class="text-center">Няма нови потребителски акаунти</h3>
 <?php endif; ?>
-
-<script src="<?= BASE_URL; ?>js/custom/account_approve.js"></script>

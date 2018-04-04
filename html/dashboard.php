@@ -34,5 +34,3 @@
         <?php endforeach; ?>
 
     </div>
-
-    <script src="<?= BASE_URL; ?>js/custom/dashboard.js" type="text/javascript"></script>
