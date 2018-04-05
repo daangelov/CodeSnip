@@ -41,6 +41,24 @@ body {
     height: 100%;
     width: auto;
 }
-.panel-heading {
-    cursor: pointer;
+
+.glyphicon {
+    font-size: 25px;
+}
+
+.btn-snip {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-snip:focus,.btn-snip:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn-float-right {
+    padding: 1px;
+    margin: 1px;
+    float: right;
 }
