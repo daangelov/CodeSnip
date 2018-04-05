@@ -1,2 +1,6 @@
 #ignore phpstorm project files
 .idea/
+
+#ignore config file with settings
+/include/config/config.ini
+
