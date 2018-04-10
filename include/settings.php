@@ -1,8 +1,7 @@
 <?php
 
-// Define BASE URL and ROOT
+// Define ROOT
 define('ROOT', dirname(__DIR__) . '/');
-define('BASE_URL', "http://" . $_SERVER['HTTP_HOST'] . pathinfo($_SERVER['PHP_SELF'])['dirname'] . '/');
 
 // Define database settings
 $settings = parse_ini_file(ROOT . 'include/config/config.ini', true);
@@ -10,6 +9,9 @@ define("DB_HOST", $settings['db']['host']);
 define("DB_NAME", $settings['db']['name']);
 define("DB_USER", $settings['db']['user']);
 define("DB_PASS", $settings['db']['pass']);
+
+// Define BASE URL
+define('BASE_URL', "http://" . $_SERVER['HTTP_HOST'] . '/' . $settings['app']['subfolder'] . '/');
 
 // Include constants
 require_once ROOT . 'include/config/constants.php';
