@@ -49,16 +49,11 @@ body {
 .btn-snip {
     background-color: transparent;
     padding: 0;
-    margin: 0;
+    margin: 1px;
+    height: 20px;
 }
 
 .btn-snip:focus,.btn-snip:active {
     outline: none !important;
     box-shadow: none;
-}
-
-.btn-float-right {
-    padding: 1px;
-    margin: 1px;
-    float: right;
 }
