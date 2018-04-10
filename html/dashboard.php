@@ -24,15 +24,23 @@
 
                 <div class="row">
 
-                    <div class="col-md-11">
-                        <h4 style="display: inline"><span class="label label-info">Дата на създаване: <?= date('d.m.Y', strtotime($snip['created_on'])); ?></span></h4>
-                        <h4 style="display: inline"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snip['updated_on'])); ?></span></h4>
+                    <div class="col-md-10">
+                        <h4 class="date"><span class="label label-info">Дата на създаване: <?= date('d.m.Y', strtotime($snip['created_on'])); ?></span></h4>
+                        <h4 class="date"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snip['updated_on'])); ?></span></h4>
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-2">
 
                         <button class="btn btn-snip">
                             <span class="glyphicon glyphicon-option-horizontal"></span>
+                        </button>
+
+                        <button class="btn btn-snip">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+
+                        <button class="btn btn-snip">
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
 
                         <button class="btn btn-snip">

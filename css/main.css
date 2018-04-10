@@ -57,3 +57,7 @@ body {
     outline: none !important;
     box-shadow: none;
 }
+
+.date {
+    display: inline;
+}
