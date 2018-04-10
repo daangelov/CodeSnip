@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2018 at 05:34 PM
+-- Generation Time: Apr 10, 2018 at 09:43 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -89,7 +89,12 @@ INSERT INTO `login_log` (`id`, `username`, `ip_address`, `created_on`, `status`)
 (0, 'admin', '::1', '2018-03-28 09:52:27', 'Success Login'),
 (0, 'admin', '::1', '2018-03-28 16:42:39', 'Success Login'),
 (0, 'admin', '::1', '2018-03-28 17:15:01', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 17:31:10', 'Success Login');
+(0, 'admin', '::1', '2018-03-28 17:31:10', 'Success Login'),
+(0, 'admin', '::1', '2018-03-30 16:36:25', 'Success Login'),
+(0, 'admin', '::1', '2018-04-04 17:19:35', 'Success Login'),
+(0, 'admin', '::1', '2018-04-05 12:41:50', 'Success Login'),
+(0, 'admin', '127.0.0.1', '2018-04-05 13:21:09', 'Success Login'),
+(0, 'admin', '::1', '2018-04-05 14:26:14', 'Success Login');
 
 -- --------------------------------------------------------
 
@@ -111,7 +116,7 @@ CREATE TABLE `session` (
 --
 
 INSERT INTO `session` (`session_id`, `user_id`, `session_data`, `ip_address`, `created_on`, `updated_on`) VALUES
-('mmimj57qpd5ml5ameu68j2c3uj', 8, 'logged|i:1;user_id|s:1:\"8\";username|s:5:\"admin\";email|s:15:\"admin@admin.com\";firstname|s:5:\"admin\";lastname|s:5:\"admin\";user_status|s:1:\"1\";user_type|s:1:\"1\";', '::1', '2018-03-28 17:15:09', '2018-03-28 17:31:11');
+('mmimj57qpd5ml5ameu68j2c3uj', 0, '', '::1', '2018-04-10 09:42:04', '2018-04-10 09:42:05');
 
 -- --------------------------------------------------------
 
