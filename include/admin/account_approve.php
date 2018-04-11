@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
 
     $response['msg'] = 'Успешна операция';
     echo json_encode($response);
+    exit();
 
 } else {
     $response['st'] = 0;
