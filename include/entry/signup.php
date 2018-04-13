@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fname']) && isset($_PO
         $response['msg'] .= "Паролите не съвпадат.\n";
     }
 
-    $stmt = $db->prepare('SELECT username, email FROM code_snip.user WHERE username = ? OR email = ?');
-    $stmt->execute(array($username, $email));
+    $stmt = $db->prepare('SELECT username, email FROM user WHERE username = ? OR email = ?');
+    $stmt->execute([$username, $email]);
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     // Check if record with this username exists
@@ -75,9 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fname']) && isset($_PO
     // Create account
     $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $db->prepare('INSERT INTO code_snip.user (username, password, firstname, lastname, email)
+    $stmt = $db->prepare('INSERT INTO user (username, password, firstname, lastname, email)
         VALUES (?, ?, ?, ?, ?)');
-    $stmt->execute(array($username, $password_hashed, $firstname, $lastname, $email));
+    $stmt->execute([$username, $password_hashed, $firstname, $lastname, $email]);
 
     $response['msg'] = "Успешно се регистрирахте в сайта!";
     echo json_encode($response);

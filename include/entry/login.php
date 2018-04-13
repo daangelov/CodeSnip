@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
     // Select the user with this username from database
     $stmt = $db->prepare('SELECT id, username, password, firstname, lastname, email, status, type
         FROM code_snip.user WHERE username = ?');
-    $stmt->execute(array($username));
+    $stmt->execute([$username]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
         $response['msg'] = 'Потребителското име и паролата са грешни или не съвпадат!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
-        $stmt->execute(array($username, $_SERVER['REMOTE_ADDR'], 'Username does not exist'));
+        $stmt->execute([$username, $_SERVER['REMOTE_ADDR'], 'Username does not exist']);
 
         echo json_encode($response);
         exit();
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
         $response['msg'] = 'Потребителското име и паролата са грешни или не съвпадат!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
-        $stmt->execute(array($username, $_SERVER['REMOTE_ADDR'], 'Wrong password'));
+        $stmt->execute([$username, $_SERVER['REMOTE_ADDR'], 'Wrong password']);
 
         echo json_encode($response);
         exit();
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
         $response['msg'] = 'Този акаунт не е потвърден!';
 
         $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
-        $stmt->execute(array($username, $_SERVER['REMOTE_ADDR'], 'Not confirmed'));
+        $stmt->execute([$username, $_SERVER['REMOTE_ADDR'], 'Not confirmed']);
 
         echo json_encode($response);
         exit();
@@ -68,17 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Check if a session already exists with that user_id and delete it, if it does
     $stmt = $db->prepare('SELECT session_id FROM session WHERE user_id = ?');
-    $stmt->execute(array($user['id']));
+    $stmt->execute([$user['id']]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($stmt->rowCount() != 0 && session_id() != $row['session_id']) {
         $stmt = $db->prepare('DELETE FROM session WHERE user_id = ?');
-        $stmt->execute(array($user['id']));
+        $stmt->execute([$user['id']]);
     }
 
     // Update session and session variables
     $stmt = $db->prepare('UPDATE session SET user_id = ? WHERE session_id = ?');
-    $stmt->execute(array($user['id'], session_id()));
+    $stmt->execute([$user['id'], session_id()]);
 
     $_SESSION['logged'] = 1;
     $_SESSION['user_id'] = $user['id'];
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Insert in description login log
     $stmt = $db->prepare('INSERT INTO login_log (username, ip_address, status) VALUES (?, ?, ?)');
-    $stmt->execute(array($username, $_SERVER['REMOTE_ADDR'], 'Success Login'));
+    $stmt->execute([$username, $_SERVER['REMOTE_ADDR'], 'Success Login']);
 
     // Everything is OK
     echo json_encode($response);

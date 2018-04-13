@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2018 at 09:43 AM
+-- Generation Time: Apr 13, 2018 at 04:21 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -36,66 +36,6 @@ CREATE TABLE `login_log` (
   `status` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `login_log`
---
-
-INSERT INTO `login_log` (`id`, `username`, `ip_address`, `created_on`, `status`) VALUES
-(0, 'admin', '::1', '2018-03-22 12:54:39', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:14:36', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:47:27', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:47:36', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:50:10', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:50:39', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:51:05', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:51:12', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:52:33', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:53:28', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:54:28', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:55:31', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:55:54', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 16:56:57', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:07:24', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:27:16', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:27:19', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:27:21', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:27:25', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:28:15', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:29:11', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:30:57', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:31:10', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:42:11', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:44:28', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:46:50', 'Success Login'),
-(0, 'admin', '::1', '2018-03-26 17:49:43', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 12:46:07', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 12:46:27', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 14:05:07', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 15:50:42', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:30:39', 'Wrong password'),
-(0, 'admin', '::1', '2018-03-27 17:30:43', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:37:31', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:37:54', 'Success Login'),
-(0, 'tester', '::1', '2018-03-27 17:46:17', 'Not confirmed'),
-(0, 'admin', '::1', '2018-03-27 17:46:26', 'Success Login'),
-(0, 'tester', '::1', '2018-03-27 17:46:49', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:46:57', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:47:26', 'Success Login'),
-(0, 'admin', '::1', '2018-03-27 17:57:13', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 09:21:50', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 09:33:01', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 09:44:43', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 09:51:02', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 09:52:27', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 16:42:39', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 17:15:01', 'Success Login'),
-(0, 'admin', '::1', '2018-03-28 17:31:10', 'Success Login'),
-(0, 'admin', '::1', '2018-03-30 16:36:25', 'Success Login'),
-(0, 'admin', '::1', '2018-04-04 17:19:35', 'Success Login'),
-(0, 'admin', '::1', '2018-04-05 12:41:50', 'Success Login'),
-(0, 'admin', '127.0.0.1', '2018-04-05 13:21:09', 'Success Login'),
-(0, 'admin', '::1', '2018-04-05 14:26:14', 'Success Login');
-
 -- --------------------------------------------------------
 
 --
@@ -111,12 +51,30 @@ CREATE TABLE `session` (
   `updated_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `session`
+-- Table structure for table `snippet`
 --
 
-INSERT INTO `session` (`session_id`, `user_id`, `session_data`, `ip_address`, `created_on`, `updated_on`) VALUES
-('mmimj57qpd5ml5ameu68j2c3uj', 0, '', '::1', '2018-04-10 09:42:04', '2018-04-10 09:42:05');
+CREATE TABLE `snippet` (
+  `id` int(11) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `text` text,
+  `lang` varchar(32) NOT NULL DEFAULT 'built_in',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` smallint(6) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `snippet`
+--
+
+INSERT INTO `snippet` (`id`, `creator_id`, `title`, `text`, `lang`, `created_on`, `updated_on`, `status`) VALUES
+(2, 8, 'My second snippet', '#include &lt;iostream&gt;\r\nusing namespace std;\r\n\r\n// main() is where program execution begins.\r\nint main() {\r\n   cout &lt;&lt; &quot;Hello World&quot;; // prints Hello World\r\n   return 0;\r\n}', 'cpp', '2018-03-27 15:25:41', '2018-03-27 15:25:41', 1),
+(6, 8, 'NEW', 'import java.util.Scanner;\r\n\r\npublic class ScannerAndKeyboard\r\n{\r\n\r\n	public static void main(String[] args)\r\n	{	Scanner s = new Scanner(System.in);\r\n		System.out.print( &quot;Enter your name: &quot;  );\r\n		String name = s.nextLine();\r\n		System.out.println( &quot;Hello &quot; + name + &quot;!&quot; );\r\n	}\r\n}', 'JAVA', '2018-04-11 17:31:38', '2018-04-11 17:31:38', 1);
 
 -- --------------------------------------------------------
 
@@ -140,21 +98,29 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `status`, `type`) VALUES
-(8, 'admin', '$2y$10$z/KTMcSVreiwtV1smIL9uO3OWZj2Z9HAqxoIeJcMm6bof5Qg2AM8q', 'admin', 'admin', 'admin@admin.com', 1, 1),
-(9, 'test', '$2y$10$npPiZXBGO416pR6TYqhwfOeH7KjaEcCtojW0hN/L0QRL.VN6zMH6a', 'test', 'test', 'test@test.bg', 0, 0),
-(10, 'test2', '$2y$10$PSMeY7qZB/xzUr..Hd6jNuJlPCQkEB9.KePwoNC8hreKoUpsoQIla', 'test2', 'test2', 'test2@test.test', 1, 0),
-(11, 'test3', '$2y$10$QkMMJ28w.Rr0vyX5MINBv.Ra6n1a3npCC1BUfqphGxaK1LZtNeUp6', 'test3', 'test3', 'test3@test3.bg', 1, 0),
-(12, 'tester', '$2y$10$kA6fl/F7i4N8/f5mA24wneLki5KZ3p0OkRAnu7A/3UisZEJs1vs6i', 'Ð”Ñ€Ð°Ð³Ð¾Ð¼Ð¸Ñ€', 'ÐÐ½Ð³ÐµÐ»Ð¾Ð²', 'dragomir.angelov@abv.bg', 1, 0);
-
+(8, 'admin', '$2y$10$z/KTMcSVreiwtV1smIL9uO3OWZj2Z9HAqxoIeJcMm6bof5Qg2AM8q', 'admin', 'admin', 'admin@admin.com', 1, 1);
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `login_log`
+--
+ALTER TABLE `login_log`
+ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`session_id`);
+
+--
+-- Indexes for table `snippet`
+--
+ALTER TABLE `snippet`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_creator_id` (`creator_id`);
 
 --
 -- Indexes for table `user`
@@ -167,10 +133,32 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `login_log`
+--
+ALTER TABLE `login_log`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `snippet`
+--
+ALTER TABLE `snippet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `snippet`
+--
+ALTER TABLE `snippet`
+  ADD CONSTRAINT `fk_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

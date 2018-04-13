@@ -27,7 +27,7 @@ class Session
     {
         // Read session data and return it
         $stmt = $this->db->prepare("SELECT * FROM session WHERE session_id=? AND ip_address=?");
-        $stmt->execute(array($session_id, $_SERVER['REMOTE_ADDR']));
+        $stmt->execute([$session_id, $_SERVER['REMOTE_ADDR']]);
 
         $session_arr = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -51,7 +51,7 @@ class Session
             if ($user_id != 0) {
                 // If there is already a session
                 $stmt = $this->db->prepare("SELECT session_id FROM session WHERE user_id=?");
-                $stmt->execute(array($user_id));
+                $stmt->execute([$user_id]);
                 $num_rows = $stmt->rowCount();
 
                 if ($num_rows != 0) {
@@ -61,18 +61,18 @@ class Session
                     if ($row['session_id'] != $session_id) {
 
                         $stmt = $this->db->prepare("DELETE FROM session WHERE user_id=?");
-                        $stmt->execute(array($user_id));
+                        $stmt->execute([$user_id]);
                     }
                 }
             }
 
             $stmt = $this->db->prepare("INSERT INTO session (session_id, user_id, session_data, ip_address, created_on, updated_on) VALUES (?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
-            $stmt->execute(array($session_id, $user_id, $session_data, $ip_address));
+            $stmt->execute([$session_id, $user_id, $session_data, $ip_address]);
 
         } else {
             // If the session exists in the database update session data and last_updated
             $stmt = $this->db->prepare("UPDATE session SET session_data=?, updated_on=CURRENT_TIMESTAMP WHERE session_id=? AND ip_address=? AND user_id=?");
-            $stmt->execute(array($session_data, $session_id, $ip_address, $user_id));
+            $stmt->execute([$session_data, $session_id, $ip_address, $user_id]);
         }
 
         return true;
@@ -83,12 +83,12 @@ class Session
     {
         // Destroy the session
         $stmt = $this->db->prepare("SELECT user_id FROM session WHERE session_id=?");
-        $stmt->execute(array($session_id));
+        $stmt->execute([$session_id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (is_array($row)) {
             $stmt = $this->db->prepare("DELETE FROM session WHERE session_id=?");
-            $stmt->execute(array($session_id));
+            $stmt->execute([$session_id]);
         }
 
         return true;

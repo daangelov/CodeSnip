@@ -1,6 +1,6 @@
 <?php
 
-$stmt = $db->prepare('SELECT * FROM code_snip.user WHERE type != ?');
+$stmt = $db->prepare('SELECT * FROM user WHERE type != ?');
 $stmt->execute(array(USER_TYPE_ADMIN));
 
 $res = $stmt->fetchAll(PDO::FETCH_ASSOC);

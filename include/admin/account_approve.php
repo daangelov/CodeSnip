@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
     }
 
     // Select the user with this username from database
-    $stmt = $db->prepare('UPDATE code_snip.user SET status = ? WHERE id = ?');
-    $stmt->execute(array($user_status, $user_id));
+    $stmt = $db->prepare('UPDATE user SET status = ? WHERE id = ?');
+    $stmt->execute([$user_status, $user_id]);
 
     $response['msg'] = 'Успешна операция';
     echo json_encode($response);

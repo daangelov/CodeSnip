@@ -19,6 +19,20 @@ require_once ROOT . 'include/config/constants.php';
 // Start db connection
 require_once ROOT . 'include/config/db_connect.php';
 
+/**
+ * Run SQL queries to create tables
+ * For easy integration
+ */
+$stmt = $db->query("SHOW TABLES LIKE 'snippet'");
+$res = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$res) {
+    $sql = file_get_contents(ROOT . 'docs/code_snip.sql');
+    $db->exec($sql);
+} else {
+
+}
+/* End */
+
 // Start sessions
 require_once ROOT . 'include/config/session_start.php';
 
