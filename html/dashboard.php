@@ -31,13 +31,25 @@
                         <h4 class="date"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snip['updated_on'])); ?></span></h4>
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-1 snip-functions">
 
-                        <button type="button" class="btn btn-snip" data-toggle="popover">
+                        <button type="button" class="btn btn-snip snip-settings" data-toggle="popover">
                             <span class="glyphicon glyphicon-option-horizontal"></span>
                         </button>
 
-                        <button class="btn btn-snip">
+                        <?php
+                        $data_content = '
+                            <div class="input-group popover-snip-share">
+                                <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="' . BASE_URL . 'preview.php?id=' . $snip['id'] . '" readonly="">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-default btn-cp-snip">
+                                        <span class="glyphicon glyphicon-copy"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        ';
+                        ?>
+                        <button type="button" class="btn btn-snip snip-share" data-toggle="popover" data-content='<?= $data_content; ?>'>
                             <span class="glyphicon glyphicon-share-alt"></span>
                         </button>
 

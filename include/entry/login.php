@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['usr']) && isset($_POST
 
     // Select the user with this username from database
     $stmt = $db->prepare('SELECT id, username, password, firstname, lastname, email, status, type
-        FROM code_snip.user WHERE username = ?');
+        FROM user WHERE username = ?');
     $stmt->execute([$username]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -4,7 +4,7 @@
 <head>
     <title>CodeSnip</title>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="icon" href="<?= BASE_URL; ?>img/favicon.png">
 
     <link href="<?= BASE_URL; ?>css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,6 @@
     <link href="<?= BASE_URL; ?>css/main.css" type="text/css" rel="stylesheet">
 
     <script src="<?= BASE_URL; ?>js/jquery/jquery-3.3.1.min.js"></script>
-    <script src="<?= BASE_URL; ?>js/highlight/highlight.pack.js"></script>
 
     <script>
         const BASE_URL = '<?= BASE_URL; ?>';

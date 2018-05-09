@@ -48,3 +48,11 @@ function makeAjaxRequest(script, formData, done, always) {
         }
     });
 }
+
+$(document).ready(function () {
+
+    // For highlight js library
+    $('pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+});

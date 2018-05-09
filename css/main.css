@@ -21,6 +21,7 @@
     z-index: 9999;
     background: url(../img/ajax-loader.svg) center no-repeat;
 }
+
 /* End loading spinner */
 
 html {
@@ -37,7 +38,8 @@ body {
 .navbar-brand {
     padding: 0;
 }
-.navbar-brand>img {
+
+.navbar-brand > img {
     height: 100%;
     width: auto;
 }
@@ -57,7 +59,7 @@ body {
     height: 20px;
 }
 
-.btn-snip:focus,.btn-snip:active {
+.btn-snip:focus, .btn-snip:active {
     outline: none !important;
     box-shadow: none;
 }

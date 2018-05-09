@@ -56,20 +56,18 @@ function editSnip(button) {
 
 $(document).ready(function () {
 
-    $(document).on('click', function(e) {
-        $('[data-toggle="popover"],[data-original-title]').each(function() {
+    // Popover buttons 
+    $(document).on('click', function (e) {
+        $('[data-toggle="popover"],[data-original-title]').each(function () {
             // the 'is' for buttons that trigger popups
             // the 'has' for icons within a button that triggers a popup
             if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide').data('bs.popover').inState.click = false
+                $(this).popover('hide').data('bs.popover').inState.click = false;
             }
         });
     });
 
-    $('pre code').each(function (i, block) {
-        hljs.highlightBlock(block);
-    });
-
+    // Change arrow direction on hide/show
     $('button[data-toggle="collapse"]').on('click', function () {
 
         $(this).find('span')
@@ -77,17 +75,18 @@ $(document).ready(function () {
             .toggleClass('glyphicon-chevron-up');
     });
 
-    $('[data-toggle="popover"]').popover({
+    // Popover for settings
+    $('.snip-settings[data-toggle="popover"]').popover({
         container: 'body',
         placement: 'top',
         html: 'true',
         content: '' +
-            '<button class="btn btn-snip edit-snip">' +
-                '<span class="glyphicon glyphicon-pencil"></span> Редактирай ' +
-            '</button>' +
-            '<button class="btn btn-snip delete-snip">' +
-                '<span class="glyphicon glyphicon-trash"></span> Изтрий ' +
-            '</button>'
+        '<button class="btn btn-snip edit-snip">' +
+        '   <span class="glyphicon glyphicon-pencil"></span> Редактирай ' +
+        '</button>' +
+        '<button class="btn btn-snip delete-snip">' +
+        '   <span class="glyphicon glyphicon-trash"></span> Изтрий ' +
+        '</button>'
     }).on('shown.bs.popover', function () {
 
         var that = $(this);
@@ -99,11 +98,31 @@ $(document).ready(function () {
         });
     });
 
+    // Popover for sharing
+    $('.snip-share[data-toggle="popover"]').popover({
+        container: 'body',
+        placement: 'top',
+        html: 'true',
+        title: "<strong>Линк към кода</strong>"
+        // Content from html attribute data-content
+    }).on('shown.bs.popover', function () {
+
+        //var that = $(this);
+        $('.input-cp-snip').click(function () {
+            this.select();
+        });
+        $('.btn-cp-snip').click(function () {
+            $(this).closest('.popover-snip-share').find('.input-cp-snip').select();
+            document.execCommand("copy");
+        })
+    });
+
+
     $(document).on("click", ".snip-save", function () {
 
         var content = $(this).prev('textarea').val(),
             snipId = $(this).attr('data-save-id'),
-            panel = $(this.closest('.panel-body')),
+            panel = $(this).closest('.panel-body'),
             formData = new FormData();
 
         formData.append('id', snipId);
@@ -114,14 +133,33 @@ $(document).ready(function () {
             formData,
             function (jdata) {
                 if (jdata.st === 1) {
-                    panel.html('<pre><code class="java hljs"></code></pre>');
-                    $('code.hljs').text(content);
-
+                    panel.html('<pre><code class="java hljs">' + content + '</code></pre>');
                     $('pre code').each(function (i, block) {
                         hljs.highlightBlock(block);
                     });
                 }
             }
         )
+    });
+
+    $(document).on('keydown', '.snip-textarea', function(e) {
+        var keyCode = e.keyCode || e.which;
+
+        if (keyCode === 9) {
+            e.preventDefault();
+
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+
+            // set textarea value to: text before caret + tab + text after caret
+            $(this).val($(this).val().substring(0, start)
+                + "\t"
+                + $(this).val().substring(end));
+
+            // put caret at right position again
+            this.selectionStart =
+                this.selectionEnd = start + 1;
+
+        }
     });
 });
