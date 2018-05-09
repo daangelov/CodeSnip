@@ -38,7 +38,7 @@ function editSnip(button) {
     formData.append('id', snipId);
 
     makeAjaxRequest(
-        BASE_URL + 'include/dashboard/snippet_get_data.php',
+        BASE_URL + 'include/dashboard/snippet_edit.php',
         formData,
         function (jdata) {
             if (jdata.st === 1) {

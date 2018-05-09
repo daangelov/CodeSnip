@@ -28,10 +28,8 @@ $res = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$res) {
     $sql = file_get_contents(ROOT . 'docs/code_snip.sql');
     $db->exec($sql);
-} else {
-
 }
-/* End */
+/** End */
 
 // Start sessions
 require_once ROOT . 'include/config/session_start.php';
