@@ -2,6 +2,10 @@
 
 require_once '../settings.php';
 
+if (!is_logged()) {
+    exit();
+}
+
 $response = array(
     'st' => 1,
     'msg' => ''
@@ -9,11 +13,11 @@ $response = array(
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST['content'])) {
 
-    $snip_id = $_POST['id'];
+    $snippet_id = $_POST['id'];
     $content = htmlspecialchars($_POST['content']);
 
     $stmt = $db->prepare('UPDATE snippet SET text = ? WHERE id = ?');
-    $stmt->execute([$content, $snip_id]);
+    $stmt->execute([$content, $snippet_id]);
 
     echo json_encode($response);
     exit();

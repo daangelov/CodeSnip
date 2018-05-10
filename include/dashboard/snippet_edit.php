@@ -2,6 +2,10 @@
 
 require_once '../settings.php';
 
+if (!is_logged()) {
+    exit();
+}
+
 $response = array(
     'st' => 1,
     'msg' => '',
@@ -10,10 +14,10 @@ $response = array(
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
 
-    $snip_id = $_POST['id'];
+    $snippet_id = $_POST['id'];
 
     $stmt = $db->prepare('SELECT text FROM snippet WHERE id = ?');
-    $stmt->execute([$snip_id]);
+    $stmt->execute([$snippet_id]);
     $snippet_text = $stmt->fetch(PDO::FETCH_ASSOC);
     $response['snippet'] = $snippet_text['text'];
 

@@ -54,6 +54,33 @@ function editSnip(button) {
     );
 }
 
+function changeSnipPublicity(button, pop_button) {
+
+
+    var formData = new FormData();
+    formData.append('id', button.closest('.panel-default').attr('id'));
+    formData.append('checked', pop_button.prop('checked'));
+
+    makeAjaxRequest(
+        BASE_URL + 'include/dashboard/toggle_snippet_publicity.php',
+        formData,
+        function (jdata) {
+            if (jdata.st === 1) {
+
+                if (pop_button.prop('checked')) {
+                    pop_button
+                        .closest('.popover-snip-share').find('.copy-share').show()
+                        .prop('checked', true);
+                } else { // change is equal to off
+                    pop_button
+                        .closest('.popover-snip-share').find('.copy-share').hide()
+                        .prop('checked', false);
+                }
+            }
+        }
+    );
+}
+
 $(document).ready(function () {
 
     // Popover buttons 
@@ -101,65 +128,114 @@ $(document).ready(function () {
     // Popover for sharing
     $('.snip-share[data-toggle="popover"]').popover({
         container: 'body',
-        placement: 'top',
+        placement: 'bottom',
         html: 'true',
-        title: "<strong>Линк към кода</strong>"
-        // Content from html attribute data-content
+        title: "<strong>Опции за споделяне</strong>",
+        content: '' +
+        '<div class="popover-snip-share">' +
+        '   <div class="input-group toggle-share">' +
+        '       <h4>Споделяне:</h4>' +
+        '       <span class="input-group-btn">' +
+        '           <input class="snip-state" data-toggle="toggle" type="checkbox">' +
+        '       </span>' +
+        '   </div>' +
+        '   <div class="input-group copy-share">' +
+        '       <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="" readonly="">' +
+        '           <span class="input-group-btn">' +
+        '               <button type="button" class="btn btn-sm btn-default btn-cp-snip">' +
+        '                   <span class="glyphicon glyphicon-copy"></span>' +
+        '               </button>' +
+        '           </span>' +
+        '   </div>' +
+        '</div>'
     }).on('shown.bs.popover', function () {
 
-        //var that = $(this);
+        var that = $(this);
+
+        $(".snip-state").on('change', function () {
+            changeSnipPublicity(that, $(this));
+        });
+
         $('.input-cp-snip').click(function () {
             this.select();
         });
+
         $('.btn-cp-snip').click(function () {
             $(this).closest('.popover-snip-share').find('.input-cp-snip').select();
             document.execCommand("copy");
         })
-    });
+    }).on('show.bs.popover', function () {
 
+        // Load content
+        var formData = new FormData(),
+            snippet_id = $(this).closest('.panel').attr('id'),
+            that = $(this);
 
-    $(document).on("click", ".snip-save", function () {
-
-        var content = $(this).prev('textarea').val(),
-            snipId = $(this).attr('data-save-id'),
-            panel = $(this).closest('.panel-body'),
-            formData = new FormData();
-
-        formData.append('id', snipId);
-        formData.append('content', content);
+        formData.append('id', snippet_id);
 
         makeAjaxRequest(
-            BASE_URL + 'include/dashboard/snippet_save.php',
+            BASE_URL + 'include/dashboard/check_publicity.php',
             formData,
             function (jdata) {
+
                 if (jdata.st === 1) {
-                    panel.html('<pre><code class="java hljs">' + content + '</code></pre>');
-                    $('pre code').each(function (i, block) {
-                        hljs.highlightBlock(block);
+
+                    var popover = that.data('bs.popover');
+                    popover.options.content = jdata.content;
+                    popover.setContent();
+                    popover.$tip.addClass(popover.options.placement);
+
+                    $(".snip-state").bootstrapToggle({
+                        onstyle: "success",
+                        size: "small"
                     });
                 }
             }
-        )
+        );
     });
 
-    $(document).on('keydown', '.snip-textarea', function(e) {
-        var keyCode = e.keyCode || e.which;
+    $('.panel-body')
+        .on("click", ".snip-save", function () {
 
-        if (keyCode === 9) {
-            e.preventDefault();
+            var content = $(this).prev('textarea').val(),
+                snipId = $(this).attr('data-save-id'),
+                panel = $(this).closest('.panel-body'),
+                formData = new FormData();
 
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
+            formData.append('id', snipId);
+            formData.append('content', content);
 
-            // set textarea value to: text before caret + tab + text after caret
-            $(this).val($(this).val().substring(0, start)
-                + "\t"
-                + $(this).val().substring(end));
+            makeAjaxRequest(
+                BASE_URL + 'include/dashboard/snippet_save.php',
+                formData,
+                function (jdata) {
+                    if (jdata.st === 1) {
+                        panel.html('<pre><code class="java hljs">' + content + '</code></pre>');
+                        $('pre code').each(function (i, block) {
+                            hljs.highlightBlock(block);
+                        });
+                    }
+                }
+            )
+        })
+        .on('keydown', '.snip-textarea', function (e) {
+            var keyCode = e.keyCode || e.which;
 
-            // put caret at right position again
-            this.selectionStart =
-                this.selectionEnd = start + 1;
+            if (keyCode === 9) {
+                e.preventDefault();
 
-        }
-    });
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+
+                // set textarea value to: text before caret + tab + text after caret
+                $(this).val($(this).val().substring(0, start)
+                    + "\t"
+                    + $(this).val().substring(end));
+
+                // put caret at right position again
+                this.selectionStart =
+                    this.selectionEnd = start + 1;
+
+            }
+        });
 });

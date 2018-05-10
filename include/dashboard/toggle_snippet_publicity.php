@@ -11,12 +11,14 @@ $response = array(
     'msg' => ''
 );
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST['checked'])) {
 
     $snippet_id = $_POST['id'];
+    $checked = ($_POST['checked'] == 'true') ? true : false;
 
-    $stmt = $db->prepare('DELETE FROM snippet WHERE id = ?');
-    $stmt->execute([$snippet_id]);
+    $stmt = $db->prepare('UPDATE snippet SET is_public = ? WHERE id = ? AND creator_id = ?');
+
+    $stmt->execute([$checked, $snippet_id, $_SESSION['user_id']]);
 
     echo json_encode($response);
     exit();

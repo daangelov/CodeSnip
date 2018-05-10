@@ -2,6 +2,7 @@
 </div>
 
 <script src="<?= BASE_URL; ?>js/bootstrap/bootstrap.min.js"></script>
+<script src="<?= BASE_URL; ?>js/bootstrap/bootstrap-toggle.min.js"></script>
 <script src="<?= BASE_URL; ?>js/sweetalert/sweetalert.min.js"></script>
 <script src="<?= BASE_URL; ?>js/highlight/highlight.pack.js"></script>
 

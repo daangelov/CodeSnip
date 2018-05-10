@@ -6,7 +6,7 @@
 <div class="panel-group" id="accordion">
 
     <?php
-    $query = 'SELECT id, title, text, lang, created_on, updated_on
+    $query = 'SELECT id, title, text, lang, created_on, updated_on, is_public
             FROM snippet
             WHERE creator_id = ? AND status = ?
             ORDER BY created_on DESC';
@@ -36,20 +36,32 @@
                         <button type="button" class="btn btn-snip snip-settings" data-toggle="popover">
                             <span class="glyphicon glyphicon-option-horizontal"></span>
                         </button>
-
                         <?php
+
+                        $checked = $snippet['is_public'] ? 'checked' : '';
+                        $display = $snippet['is_public'] ? '' : 'style="display:none"';
+
                         $data_content = '
-                            <div class="input-group popover-snip-share">
-                                <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="' . BASE_URL . 'preview.php?id=' . $snippet['id'] . '" readonly="">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-sm btn-default btn-cp-snip">
-                                        <span class="glyphicon glyphicon-copy"></span>
-                                    </button>
-                                </span>
+                            <div class="popover-snip-share">
+                                <div class="input-group toggle-share">
+                                    <h4>Споделяне:</h4>
+                                    <span class="input-group-btn">
+                                        <input class="snip-state" type="checkbox" ' . $checked . '>
+                                    </span>
+                                </div>
+                                
+                                <div ' . $display . ' class="input-group copy-share">
+                                    <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="' . BASE_URL . 'preview.php?id=' . $snippet['id'] . '" readonly="">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-default btn-cp-snip">
+                                            <span class="glyphicon glyphicon-copy"></span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         ';
                         ?>
-                        <button type="button" class="btn btn-snip snip-share" data-toggle="popover" data-content='<?= $data_content; ?>'>
+                        <button type="button" class="btn btn-snip snip-share" data-toggle="popover">
                             <span class="glyphicon glyphicon-share-alt"></span>
                         </button>
 

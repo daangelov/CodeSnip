@@ -2,6 +2,10 @@
 
 require_once '../settings.php';
 
+if (!is_logged() || !is_admin()) {
+    exit();
+}
+
 $response = array(
     'st' => 1,
     'msg' => ''
