@@ -36,7 +36,7 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
             } catch (e) {
                 // console.log(e);
                 // console.log(data);
-                showWarning('Неправилно върната стойност!');
+                showWarning('Моля презаредете страницата!');
             }
         },
         error: function () {

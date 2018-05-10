@@ -72,3 +72,7 @@ body {
 .snip-functions {
     margin-top: 10px;
 }
+
+.snip-state {
+    visibility: hidden;
+}

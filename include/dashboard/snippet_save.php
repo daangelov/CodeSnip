@@ -8,7 +8,8 @@ if (!is_logged()) {
 
 $response = array(
     'st' => 1,
-    'msg' => ''
+    'msg' => '',
+    'date' => date('d.m.Y')
 );
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST['content'])) {
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
     $snippet_id = $_POST['id'];
     $content = htmlspecialchars($_POST['content']);
 
-    $stmt = $db->prepare('UPDATE snippet SET text = ? WHERE id = ?');
+    $stmt = $db->prepare('UPDATE snippet SET text = ?, updated_on = CURRENT_TIMESTAMP WHERE id = ?');
     $stmt->execute([$content, $snippet_id]);
 
     echo json_encode($response);

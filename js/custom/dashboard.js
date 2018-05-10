@@ -147,20 +147,25 @@ $(document).ready(function () {
 
         var that = $(this);
 
-        $(".snip-state").on('change', function () {
-            changeSnipPublicity(that, $(this));
-        });
+        $(".popover.bottom")
+            .delegate(".snip-state", "change", function () {
+                changeSnipPublicity(that, $(this));
+            })
+            .delegate(".input-cp-snip", "click", function () {
+                // this.select(); // Doesn't work in safari
+                $(this).get(0).setSelectionRange(0,999); // For safari
+            })
+            .delegate(".btn-cp-snip", "click", function () {
+                $(this).closest('.popover-snip-share').find('.input-cp-snip')
+                    .select(); // Doesn't work in safari
+                $(this).closest('.popover-snip-share').find('.input-cp-snip')
+                    .get(0)
+                    .setSelectionRange(0,999); // For safari
+                document.execCommand("copy");
+            });
 
-        $('.input-cp-snip').click(function () {
-            this.select();
-        });
-
-        $('.btn-cp-snip').click(function () {
-            $(this).closest('.popover-snip-share').find('.input-cp-snip').select();
-            document.execCommand("copy");
-        })
     }).on('show.bs.popover', function () {
-
+        
         // Load content
         var formData = new FormData(),
             snippet_id = $(this).closest('.panel').attr('id'),
@@ -182,14 +187,15 @@ $(document).ready(function () {
 
                     $(".snip-state").bootstrapToggle({
                         onstyle: "success",
-                        size: "small"
+                        size: "small",
+                        on: "Да",
+                        off: "Не"
                     });
                 }
             },
             function () {
             },
             'hideSpinner'
-
         );
     });
 
@@ -209,10 +215,12 @@ $(document).ready(function () {
                 formData,
                 function (jdata) {
                     if (jdata.st === 1) {
+                        panel.closest('.panel').find('.label-success').html('Последно редактиране: ' + jdata.date);
                         panel.html('<pre><code class="java hljs">' + content + '</code></pre>');
                         $('pre code').each(function (i, block) {
                             hljs.highlightBlock(block);
                         });
+
                     }
                 }
             )

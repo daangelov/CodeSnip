@@ -96,7 +96,7 @@ class Session
 
     public function gc()
     {
-        $stmt = $this->db->prepare("DELETE FROM session WHERE updated_on < CURRENT_TIMESTAMP - INTERVAL '30' MINUTE");
+        $stmt = $this->db->prepare("DELETE FROM session WHERE updated_on < CURRENT_TIMESTAMP - INTERVAL '24' HOUR");
         $stmt->execute();
 
         return true;
