@@ -11,9 +11,11 @@ function showWarning(msg) {
 }
 
 /* Ajax request */
-function makeAjaxRequest(script, formData, done, always) {
+function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
 
-    showSpinner();
+    if (typeof spinnerHidden === 'undefined') {
+        showSpinner();
+    }
 
     $.ajax({
         url: script,

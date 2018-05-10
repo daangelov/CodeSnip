@@ -35,13 +35,10 @@ body {
     padding-top: 65px;
 }
 
-.navbar-brand {
-    padding: 0;
-}
-
-.navbar-brand > img {
-    height: 100%;
+.navbar-header img {
+    height: 39px;
     width: auto;
+    margin-top: 5px;
 }
 
 .panel .glyphicon {
@@ -64,14 +61,14 @@ body {
     box-shadow: none;
 }
 
-.date {
-    display: inline;
-}
-
 .snip-textarea {
     width: 100%;
     border-radius: 5px;
     resize: none;
     min-height: 300px;
     padding: 20px;
+}
+
+.snip-functions {
+    margin-top: 10px;
 }

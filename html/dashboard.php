@@ -26,41 +26,19 @@
 
                 <div class="row">
 
-                    <div class="col-md-11">
-                        <h4 class="date"><span class="label label-info">Дата на създаване: <?= date('d.m.Y', strtotime($snippet['created_on'])); ?></span></h4>
-                        <h4 class="date"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snippet['updated_on'])); ?></span></h4>
+                    <div class="col-sm-10 col-lg-11">
+                        <div class="row">
+                            <h4 class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><span class="label label-info">Дата на създаване: <?= date('d.m.Y', strtotime($snippet['created_on'])); ?></span></h4>
+                            <h4 class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snippet['updated_on'])); ?></span></h4>
+                        </div>
                     </div>
 
-                    <div class="col-md-1 snip-functions">
+                    <div class="col-sm-2 col-lg-1 snip-functions">
 
                         <button type="button" class="btn btn-snip snip-settings" data-toggle="popover">
                             <span class="glyphicon glyphicon-option-horizontal"></span>
                         </button>
-                        <?php
 
-                        $checked = $snippet['is_public'] ? 'checked' : '';
-                        $display = $snippet['is_public'] ? '' : 'style="display:none"';
-
-                        $data_content = '
-                            <div class="popover-snip-share">
-                                <div class="input-group toggle-share">
-                                    <h4>Споделяне:</h4>
-                                    <span class="input-group-btn">
-                                        <input class="snip-state" type="checkbox" ' . $checked . '>
-                                    </span>
-                                </div>
-                                
-                                <div ' . $display . ' class="input-group copy-share">
-                                    <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="' . BASE_URL . 'preview.php?id=' . $snippet['id'] . '" readonly="">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-default btn-cp-snip">
-                                            <span class="glyphicon glyphicon-copy"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        ';
-                        ?>
                         <button type="button" class="btn btn-snip snip-share" data-toggle="popover">
                             <span class="glyphicon glyphicon-share-alt"></span>
                         </button>

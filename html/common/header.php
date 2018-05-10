@@ -28,7 +28,7 @@
     <div class="container">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?= BASE_URL; ?>index.php">
+            <a href="<?= BASE_URL; ?>index.php" class="navbar-left">
                 <img src="<?= BASE_URL; ?>img/logo.png" alt="CodeSnip">
             </a>
 

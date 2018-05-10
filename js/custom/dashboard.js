@@ -77,7 +77,10 @@ function changeSnipPublicity(button, pop_button) {
                         .prop('checked', false);
                 }
             }
-        }
+        },
+        function () {
+        },
+        'hideSpinner'
     );
 }
 
@@ -139,14 +142,6 @@ $(document).ready(function () {
         '           <input class="snip-state" data-toggle="toggle" type="checkbox">' +
         '       </span>' +
         '   </div>' +
-        '   <div class="input-group copy-share">' +
-        '       <input type="text" class="form-control input-monospace input-sm input-cp-snip" value="" readonly="">' +
-        '           <span class="input-group-btn">' +
-        '               <button type="button" class="btn btn-sm btn-default btn-cp-snip">' +
-        '                   <span class="glyphicon glyphicon-copy"></span>' +
-        '               </button>' +
-        '           </span>' +
-        '   </div>' +
         '</div>'
     }).on('shown.bs.popover', function () {
 
@@ -190,7 +185,11 @@ $(document).ready(function () {
                         size: "small"
                     });
                 }
-            }
+            },
+            function () {
+            },
+            'hideSpinner'
+
         );
     });
 
