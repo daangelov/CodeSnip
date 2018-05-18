@@ -88,6 +88,10 @@ function changeSnipPublicity(button, pop_button) {
     );
 }
 
+function createSnippet() {
+    location.reload();
+}
+
 $(document).ready(function () {
 
     // Popover buttons 
@@ -105,8 +109,8 @@ $(document).ready(function () {
     $('button[data-toggle="collapse"]').on('click', function () {
 
         $(this).find('span')
-            .toggleClass('glyphicon-chevron-down')
-            .toggleClass('glyphicon-chevron-up');
+            .toggleClass('glyphicon-menu-down')
+            .toggleClass('glyphicon-menu-up');
     });
 
     // Popover for settings
@@ -219,7 +223,7 @@ $(document).ready(function () {
                 function (jdata) {
                     if (jdata.st === 1) {
                         panel.closest('.panel').find('.label-success').html('Последно редактиране: ' + jdata.date);
-                        panel.html('<pre><code class="java hljs">' + content + '</code></pre>');
+                        panel.html('<pre><code class="java hljs">' + jdata.content + '</code></pre>');
                         $('pre code').each(function (i, block) {
                             hljs.highlightBlock(block);
                         });
@@ -239,13 +243,39 @@ $(document).ready(function () {
 
                 // set textarea value to: text before caret + tab + text after caret
                 $(this).val($(this).val().substring(0, start)
-                    + "\t"
+                    + '    '
                     + $(this).val().substring(end));
 
                 // put caret at right position again
                 this.selectionStart =
-                    this.selectionEnd = start + 1;
+                    this.selectionEnd = start + 4;
 
             }
         });
+
+    $("#snip-upload-form").on("submit", function (event) {
+        event.preventDefault();
+
+        var actionURL = $(this).attr('action'),
+            formData = new FormData($(this)[0]);
+
+        makeAjaxRequest(
+            actionURL,
+            formData,
+            function (jdata) {
+                if (jdata.st === 1) {
+                    swal(
+                        'Страхотно!',
+                        'Добавихте парче код към Вашия профил!',
+                        'success'
+                    ).then(function () {
+                        createSnippet();
+                    })
+
+                } else {
+                    swal('Невалидни данни', jdata.msg, 'warning');
+                }
+            }
+        )
+    })
 });

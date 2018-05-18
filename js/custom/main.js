@@ -7,7 +7,7 @@ function hideSpinner() {
 }
 
 function showWarning(msg) {
-    swal("Възникна грешка!", msg, "error");
+    swal("Възникна грешка!", msg, "warning");
 }
 
 /* Ajax request */

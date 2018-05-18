@@ -1,4 +1,42 @@
-<h2>Добави парче код</h2>
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <button class="btn" data-toggle="collapse" href="#snip-upload">Добави парче код</button>
+        <span>Натисни бутона за да добавиш ново парче код!</span>
+    </div>
+
+    <div class="panel-body collapse" id="snip-upload">
+        <form id="snip-upload-form" action="<?= BASE_URL; ?>include/dashboard/add_snippet.php" method="post">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <label for="title-of-snippet"></label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="label-of-input1">Име на парчето код</span>
+                        <input type="text" class="form-control" id="title-of-snippet" aria-describedby="label-of-input1" name="title">
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <label for="lang-of-snippet"></label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="label-of-input2">Език</span>
+                        <input type="text" class="form-control" id="lang-of-snippet" aria-describedby="label-of-input2" name="lang">
+                    </div>
+                </div>
+            </div>
+
+            <label for="code-of-snippet"></label>
+            <div class="input-group">
+                <span class="input-group-addon">Код</span>
+                <textarea class="form-control snip-textarea" id="code-of-snippet" placeholder="Поставете Вашето парче код тук" name="code"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success snip-upload">Запази</button>
+
+        </form>
+    </div>
+</div>
 
 <hr>
 
@@ -49,7 +87,7 @@
                 </div>
 
                 <button class="btn btn-block btn-snip" type="button" data-toggle="collapse" href="#snip_<?= $snippet['id']; ?>">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon glyphicon-menu-down"></span>
                 </button>
             </div>
 

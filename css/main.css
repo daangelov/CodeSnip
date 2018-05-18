@@ -76,3 +76,7 @@ body {
 .snip-state {
     visibility: hidden;
 }
+
+.snip-upload {
+    margin-top: 5px;
+}
