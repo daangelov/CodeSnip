@@ -34,8 +34,8 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
                     done(jdata);
                 }
             } catch (e) {
-                // console.log(e);
-                // console.log(data);
+                 console.log(e);
+                 console.log(data);
                 showWarning('Моля презаредете страницата!');
             }
         },

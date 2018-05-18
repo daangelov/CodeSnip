@@ -1,6 +1,8 @@
-<h2>Моите парчета код</h2>
+<h2>Добави парче код</h2>
+
 <hr>
-<button class="btn btn-primary">Добави парче код</button> <span><--Още не е готово!</span>
+
+<h2>Моите парчета код</h2>
 <hr>
 
 <div class="panel-group" id="accordion">
