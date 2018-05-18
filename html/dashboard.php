@@ -1,8 +1,7 @@
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <button class="btn" data-toggle="collapse" href="#snip-upload">Добави парче код</button>
-        <span>Натисни бутона за да добавиш ново парче код!</span>
+        <button class="btn btn-default" data-toggle="collapse" href="#snip-upload">Добави парче код</button>
     </div>
 
     <div class="panel-body collapse" id="snip-upload">
@@ -12,7 +11,7 @@
                 <div class="col-xs-12 col-md-6">
                     <label for="title-of-snippet"></label>
                     <div class="input-group">
-                        <span class="input-group-addon" id="label-of-input1">Име на парчето код</span>
+                        <span class="input-group-addon" id="label-of-input1">Заглавие</span>
                         <input type="text" class="form-control" id="title-of-snippet" aria-describedby="label-of-input1" name="title">
                     </div>
                 </div>
@@ -68,8 +67,8 @@
 
                     <div class="col-sm-10 col-lg-11">
                         <div class="row">
-                            <h4 class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><span class="label label-info">Дата на създаване: <?= date('d.m.Y', strtotime($snippet['created_on'])); ?></span></h4>
-                            <h4 class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><span class="label label-success">Последно редактиране: <?= date('d.m.Y', strtotime($snippet['updated_on'])); ?></span></h4>
+                            <h4 class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="label label-info">Създадено: <?= date('d.m.Y H:m:i', strtotime($snippet['created_on'])); ?></span></h4>
+                            <h4 class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="label label-success">Редактирано: <?= date('d.m.Y H:m:i', strtotime($snippet['updated_on'])); ?></span></h4>
                         </div>
                     </div>
 

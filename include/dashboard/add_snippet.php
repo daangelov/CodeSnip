@@ -20,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title']) && isset($_PO
 
     if (strlen($lang) < 1 || strlen($lang) > 32) {
         $response['st'] = 2;
-        $response['msg'] = "Невалиден език за програмиране";
+        $response['msg'] = "Невалиден език за програмиране.";
     }
 
     if (strlen($title) < 1 || strlen($title) > 128) {
         $response['st'] = 2;
-        $response['msg'] = "Невалидно име за парче код";
+        $response['msg'] = "Невалидно заглавие за парче код.";
     }
 
     if ($response['st'] == 1) {

@@ -156,21 +156,23 @@ $(document).ready(function () {
         var that = $(this),
             popoverId = that.attr('aria-describedby');
 
-        $("#" + popoverId + " .snip-state").on("change", function () {
-            changeSnipPublicity(that, $(this));
-        });
-        $("#" + popoverId + " .input-cp-snip").on("click", function () {
-            // this.select(); // Doesn't work in safari
-            $(this).get(0).setSelectionRange(0, 999); // For safari
-        });
-        $("#" + popoverId + " .btn-cp-snip").on("click", function () {
-            $(this).closest('.popover-snip-share').find('.input-cp-snip')
-                .select(); // Doesn't work in safari
-            $(this).closest('.popover-snip-share').find('.input-cp-snip')
-                .get(0)
-                .setSelectionRange(0, 999); // For safari
-            document.execCommand("copy");
-        })
+        $('body')
+            .delegate("#" + popoverId + " .snip-state", "change", function () {
+                changeSnipPublicity(that, $(this));
+            })
+            .delegate("#" + popoverId + " .input-cp-snip", "click", function () {
+                // this.select(); // Doesn't work in safari
+                $(this).get(0).setSelectionRange(0, 999); // For safari
+            })
+            .delegate("#" + popoverId + " .btn-cp-snip", "click", function () {
+                $(this).closest('.popover-snip-share').find('.input-cp-snip')
+                    .select(); // Doesn't work in safari
+                $(this).closest('.popover-snip-share').find('.input-cp-snip')
+                    .get(0)
+                    .setSelectionRange(0, 999); // For safari
+                document.execCommand("copy");
+            });
+
     }).on('show.bs.popover', function () {
 
         // Load content
