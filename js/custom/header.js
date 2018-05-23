@@ -10,7 +10,7 @@ $(document).ready(function () {
             new FormData(form[0]),
             function (jdata) {
                 if (jdata.st === 1) {
-                    window.location.replace(BASE_URL + 'dashboard.php');
+                    window.location.href = BASE_URL + 'dashboard.php';
                 } else if (jdata.st === 2) {
                     swal('Внимание!', jdata.msg, 'warning');
                 }

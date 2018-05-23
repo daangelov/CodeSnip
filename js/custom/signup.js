@@ -79,7 +79,7 @@ $(document).ready(function () {
 
                 if (jdata.st === 1) {
                     swal('Поздравления!', jdata.msg, 'success').then(function () {
-                        window.location.replace('index.php');
+                        window.location.href = BASE_URL + 'index.php';
                     });
                 } else if (jdata.st === 2) {
                     swal('Внимание!', jdata.msg, 'warning');

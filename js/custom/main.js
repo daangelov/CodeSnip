@@ -34,8 +34,8 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
                     done(jdata);
                 }
             } catch (e) {
-                // console.log(e);
-                // console.log(data);
+                 console.log(e);
+                 console.log(data);
                 swal({
                     title: "Внимание!",
                     text: "Вашата сесия е изтекла.",
@@ -43,7 +43,7 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
                     timer: 3000,
                     button: false
                 }).then(function () {
-                    window.location.replace('index.php');
+                    window.location.href = BASE_URL + 'index.php';
                 });
             }
         },
