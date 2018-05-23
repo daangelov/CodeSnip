@@ -34,9 +34,17 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
                     done(jdata);
                 }
             } catch (e) {
-                 console.log(e);
-                 console.log(data);
-                showWarning('Моля презаредете страницата!');
+                // console.log(e);
+                // console.log(data);
+                swal({
+                    title: "Внимание!",
+                    text: "Вашата сесия е изтекла.",
+                    icon: "warning",
+                    timer: 3000,
+                    button: false
+                }).then(function () {
+                    window.location.replace('index.php');
+                });
             }
         },
         error: function () {
