@@ -11,7 +11,7 @@ define("DB_USER", $settings['db']['user']);
 define("DB_PASS", $settings['db']['pass']);
 
 // Define BASE URL
-define('BASE_URL', "http://" . $_SERVER['HTTP_HOST'] . '/' . $settings['app']['basedir'] . '/');
+define('BASE_URL', "http://" . $_SERVER['HTTP_HOST'] . '/' . $settings['app']['basedir']);
 
 // Include constants
 require_once ROOT . 'include/config/constants.php';
