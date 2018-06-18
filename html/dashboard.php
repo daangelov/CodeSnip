@@ -83,7 +83,7 @@
                     <div class="col-sm-10 col-lg-11">
                         <div class="row">
                             <h4 class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="label label-info">Създадено: <?= date('d.m.Y H:i', strtotime($snippet['created_on'])); ?></span></h4>
-                            <h4 class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="label label-success">Редактирано: <?= date('d.m.Y H:i', strtotime($snippet['updated_on'])); ?></span></h4>
+                            <h4 class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="label label-success">Последно редактиране: <?= date('d.m.Y H:i', strtotime($snippet['updated_on'])); ?></span></h4>
                         </div>
                     </div>
 

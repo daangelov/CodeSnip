@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title']) && isset($_PO
     if ($response['st'] == 1) {
         try {
             $db->beginTransaction();
-            $stmt = $db->prepare('INSERT INTO snippet (creator_id, title, lang, text) VALUES (?, ?, ?, ?);');
-            $stmt->execute([$_SESSION['user_id'], $title, $lang, $code]);
+            $stmt = $db->prepare('INSERT INTO snippet (creator_id, title, lang, text, updated_on) VALUES (?, ?, ?, ?, ?);');
+            $stmt->execute([$_SESSION['user_id'], $title, $lang, $code, date('d.m.Y H:i')]);
             $stmt = $db->query('SELECT LAST_INSERT_ID();');
 
             $snippet = $stmt->fetch(PDO::FETCH_ASSOC);
