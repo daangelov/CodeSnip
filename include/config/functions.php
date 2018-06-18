@@ -116,17 +116,3 @@ function auto_load_js($filename) {
     // If not found return false
     return false;
 }
-
-/*
-/**
- * Error handler for sql errors
- * @param array $response
-
-function handle_sql_error($error_message, &$response) {
-    //error_log($error_message);
-
-    $response['st'] = 0;
-    $response['msg'] = 'Моля презаредете страницата';
-    echo json_encode($response);
-    exit();
-}*/

@@ -70,5 +70,5 @@ if ($stmt->rowCount() > 0) : ?>
     </div>
 <?php else : ?>
 
-    <h3 class="text-center">Няма нови потребителски акаунти</h3>
+    <div class="alert alert-warning text-center"><strong>Няма нови потребителски акаунти</strong></div>
 <?php endif; ?>
