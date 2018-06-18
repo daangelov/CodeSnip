@@ -279,5 +279,30 @@ $(document).ready(function () {
                 }
             }
         )
+    });
+
+    $("#search-snippet").on("submit", function (event) {
+        event.preventDefault();
+
+        makeAjaxRequest(
+            BASE_URL + 'include/dashboard/search_snippet.php',
+            new FormData($(this)[0]),
+            function (jdata) {
+                $("#snippet-message").hide();
+                if (jdata.snippets.length < 1) {
+                    $("#accordion").hide();
+                    $("#snippet-message").show();
+                } else {
+                    $(".snippet").each(function (index, element) {
+                        if (jdata.snippets.includes($(element).attr('id'))) {
+                            $("#accordion").show();
+                            $(element).show();
+                        } else {
+                            $(element).hide();
+                        }
+                    });
+                }
+            }
+        )
     })
 });

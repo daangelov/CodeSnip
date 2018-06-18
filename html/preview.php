@@ -2,7 +2,7 @@
 
 $query = 'SELECT s.title, s.text, s.lang, s.created_on, s.updated_on, u.username, u.firstname, u.lastname  
     FROM snippet AS s INNER JOIN user AS u ON s.creator_id = u.id
-    WHERE s.id = ? AND s.is_public = ? AND s.status = ?';
+    WHERE s.public_id = ? AND s.is_public = ? AND s.status = ?';
 
 $stmt = $db->prepare($query);
 $stmt->execute([$_GET['id'], true, SNIPPET_STATUS_APPROVED]);

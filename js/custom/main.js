@@ -34,13 +34,15 @@ function makeAjaxRequest(script, formData, done, always, spinnerHidden) {
                     done(jdata);
                 }
             } catch (e) {
-                 console.log(e);
-                 console.log(data);
+                /* For development */
+                //console.log(e);
+                //console.log(data);
+                /* End */
                 swal({
                     title: "Внимание!",
                     text: "Вашата сесия е изтекла.",
                     icon: "warning",
-                    timer: 3000,
+                    timer: 2000,
                     button: false
                 }).then(function () {
                     window.location.href = BASE_URL + 'index.php';

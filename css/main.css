@@ -31,14 +31,18 @@ html {
 }
 
 body {
-    background: #ffffff url("../img/background.jpg") fixed no-repeat left bottom;
+    background: #fafbff url("../img/background.jpg") fixed no-repeat left bottom;
     padding-top: 65px;
 }
 
 .navbar-header img {
-    height: 39px;
-    width: auto;
-    margin-top: 5px;
+    width: 160px;
+    height: auto;
+}
+
+#logo-link {
+    line-height: 50px;
+    vertical-align: middle;
 }
 
 .panel .glyphicon {
@@ -79,4 +83,22 @@ body {
 
 .snip-upload {
     margin-top: 5px;
+}
+
+.table-white {
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+#snippet-message {
+    display: none;
 }

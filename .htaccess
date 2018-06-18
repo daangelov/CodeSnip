@@ -1,4 +1,6 @@
-# Disable directory browsing 
+AddHandler application/x-httpd-php70 .php .php5 .php4 .php3
+
+# Disable directory browsing
 Options -Indexes
 
 <Files ~ "\.ini$">

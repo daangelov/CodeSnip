@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST[
     $snippet_id = $_POST['id'];
     $content = htmlspecialchars($_POST['content']);
 
-    $stmt = $db->prepare('UPDATE snippet SET text = ?, updated_on = CURRENT_TIMESTAMP WHERE id = ?');
-    $stmt->execute([$content, $snippet_id]);
+    $stmt = $db->prepare('UPDATE snippet SET text = ?, updated_on = ? WHERE id = ?');
+    $stmt->execute([$content, date("Y-m-d H:i:s"), $snippet_id]);
 
     $response['content'] = $content;
     echo json_encode($response);
